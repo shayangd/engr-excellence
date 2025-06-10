@@ -1,0 +1,57 @@
+services:
+  # FastAPI Application
+  api:
+    build: .
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongo:27017
+      - DATABASE_NAME=fastapi_db
+      - DEBUG=True
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # MongoDB Database
+  mongo:
+    image: mongo:7.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=fastapi_db
+    volumes:
+      - mongodb_data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # MongoDB Express (Optional - for database management)
+  mongo-express:
+    image: mongo-express:1.0.0
+    container_name: mongo_express
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin123
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge

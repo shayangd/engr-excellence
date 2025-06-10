@@ -18,8 +18,8 @@ class UserCRUD:
         existing_user = await self.collection.find_one({"email": user_data.email})
         if existing_user:
             raise ValueError("Email already registered")
-        
-        user_dict = user_data.dict()
+
+        user_dict = user_data.model_dump()
         result = await self.collection.insert_one(user_dict)
         
         # Retrieve the created user
@@ -59,7 +59,7 @@ class UserCRUD:
             return None
 
         # Remove None values from update data
-        update_data = {k: v for k, v in user_data.dict().items() if v is not None}
+        update_data = {k: v for k, v in user_data.model_dump().items() if v is not None}
         
         if not update_data:
             # If no data to update, return current user

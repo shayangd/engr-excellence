@@ -19,33 +19,33 @@ install-dev:
 
 # Run all tests
 test:
-	docker compose exec api python -m pytest tests/ -v --asyncio-mode=auto
+	cd .. && docker compose exec backend python -m pytest tests/ -v --asyncio-mode=auto
 
 # Run unit tests only
 test-unit:
-	docker compose exec api python -m pytest tests/unit/ -v --asyncio-mode=auto
+	cd .. && docker compose exec backend python -m pytest tests/unit/ -v --asyncio-mode=auto
 
 # Run integration tests only
 test-integration:
-	docker compose exec api python -m pytest tests/integration/ -v --asyncio-mode=auto -m integration
+	cd .. && docker compose exec backend python -m pytest tests/integration/ -v --asyncio-mode=auto -m integration
 
 # Run tests with coverage
 test-coverage:
-	docker compose exec api python -m pytest tests/ --cov=app --cov-report=html --cov-report=term-missing --cov-fail-under=80 --asyncio-mode=auto
+	cd .. && docker compose exec backend python -m pytest tests/ --cov=app --cov-report=html --cov-report=term-missing --cov-fail-under=80 --asyncio-mode=auto
 
 # Run tests in watch mode (requires pytest-watch)
 test-watch:
-	docker compose exec api ptw tests/ app/ --runner "python -m pytest --asyncio-mode=auto"
+	cd .. && docker compose exec backend ptw tests/ app/ --runner "python -m pytest --asyncio-mode=auto"
 
 # Run linting checks
 lint:
-	docker compose exec api python -m flake8 app/ tests/
-	docker compose exec api python -m mypy app/
+	cd .. && docker compose exec backend python -m flake8 app/ tests/
+	cd .. && docker compose exec backend python -m mypy app/
 
 # Format code
 format:
-	docker compose exec api python -m black app/ tests/
-	docker compose exec api python -m isort app/ tests/
+	cd .. && docker compose exec backend python -m black app/ tests/
+	cd .. && docker compose exec backend python -m isort app/ tests/
 
 # Clean up generated files
 clean:
@@ -57,7 +57,7 @@ clean:
 
 # Docker-based testing
 test-docker:
-	docker compose exec api python -m pytest tests/ -v
+	cd .. && docker compose exec backend python -m pytest tests/ -v
 
 test-docker-coverage:
-	docker compose exec api python -m pytest tests/ --cov=app --cov-report=html --cov-report=term-missing
+	cd .. && docker compose exec backend python -m pytest tests/ --cov=app --cov-report=html --cov-report=term-missing

@@ -22,21 +22,22 @@ A modern, fast, and scalable REST API built with FastAPI and MongoDB for user ma
 
 ### Running the Application
 
-1. **Clone and navigate to the backend directory**:
+1. **Navigate to the project root directory**:
 
    ```bash
-   cd backend
+   cd engr-excellence
    ```
 
 2. **Start the application**:
    ```bash
-   docker-compose up
+   docker compose up
    ```
 
 That's it! The application will be available at:
 
 - **API**: http://localhost:8000
 - **API Documentation**: http://localhost:8000/api/v1/docs
+- **Frontend**: http://localhost:3000
 - **MongoDB Express** (Database UI): http://localhost:8081 (admin/admin123)
 
 ## API Endpoints
@@ -134,7 +135,6 @@ backend/
 │           └── users.py       # API routes
 ├── requirements.txt
 ├── Dockerfile
-├── docker-compose.yml
 └── .env
 ```
 
@@ -151,13 +151,13 @@ The application uses the following environment variables (configured in `.env`):
 ### Stopping the Application
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 To remove volumes (database data):
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 ## Testing
@@ -185,23 +185,27 @@ make test-integration
 make test-coverage
 ```
 
+**Note**: The Makefile commands automatically navigate to the project root and use the correct Docker service names.
+
 #### Using Docker Compose directly
+
+**Note**: Run these commands from the project root directory.
 
 ```bash
 # Run single test
-docker compose exec api python -m pytest tests/unit/api/test_users.py::TestUsersAPI::test_create_user_invalid_email -v --asyncio-mode=auto
+docker compose exec backend python -m pytest tests/unit/api/test_users.py::TestUsersAPI::test_create_user_invalid_email -v --asyncio-mode=auto
 
 # Run all tests
-docker compose exec api python -m pytest tests/ -v --asyncio-mode=auto
+docker compose exec backend python -m pytest tests/ -v --asyncio-mode=auto
 
 # Run unit tests only
-docker compose exec api python -m pytest tests/unit/ -v --asyncio-mode=auto
+docker compose exec backend python -m pytest tests/unit/ -v --asyncio-mode=auto
 
 # Run integration tests only
-docker compose exec api python -m pytest tests/integration/ -v --asyncio-mode=auto -m integration
+docker compose exec backend python -m pytest tests/integration/ -v --asyncio-mode=auto -m integration
 
 # Run with coverage
-docker compose exec api python -m pytest tests/ --cov=app --cov-report=html --cov-report=term-missing --asyncio-mode=auto
+docker compose exec backend python -m pytest tests/ --cov=app --cov-report=html --cov-report=term-missing --asyncio-mode=auto
 ```
 
 #### Running Tests Locally (Optional)

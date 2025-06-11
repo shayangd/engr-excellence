@@ -1,0 +1,181 @@
+{
+  // Python configuration
+  "python.defaultInterpreterPath": "/usr/local/bin/python",
+  "python.terminal.activateEnvironment": false,
+
+  // Linting
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+    "--max-line-length=88",
+    "--extend-ignore=E203,W503"
+  ],
+  "python.linting.mypyEnabled": true,
+  "python.linting.pylintEnabled": false,
+
+  // Formatting
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length=88"],
+
+  // Import sorting
+  "python.sortImports.args": ["--profile=black", "--line-length=88"],
+
+  // Testing
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["backend/tests", "-v", "--tb=short"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.autoTestDiscoverOnSaveEnabled": true,
+  "python.testing.promptToConfigure": false,
+
+  // Editor settings
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.flake8": true
+  },
+  "editor.rulers": [88],
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.trimAutoWhitespace": true,
+  "editor.renderWhitespace": "boundary",
+
+  // File settings
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+
+  // File associations
+  "files.associations": {
+    "*.env*": "dotenv",
+    "docker-compose*.yml": "dockercompose",
+    "Dockerfile*": "dockerfile",
+    "*.json": "jsonc"
+  },
+
+  // Exclude files from explorer
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/htmlcov": true,
+    "**/.coverage": true,
+    "**/node_modules": true,
+    "**/.git": false
+  },
+
+  // Search settings
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/htmlcov": true,
+    "**/node_modules": true,
+    "**/.git": true
+  },
+
+  // Terminal settings
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.cwd": "/workspace",
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "/workspace/backend"
+  },
+
+  // Git settings
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.postCommitCommand": "none",
+
+  // Docker settings
+  "docker.showStartPage": false,
+
+  // MongoDB settings
+  "mongodb.connectionSaveLocation": "Workspace",
+
+  // JSON settings
+  "json.schemas": [
+    {
+      "fileMatch": ["backend/app/schemas/*.json"],
+      "url": "https://json-schema.org/draft-07/schema#"
+    }
+  ],
+
+  // Workspace specific settings
+  "workbench.startupEditor": "readme",
+  "workbench.colorTheme": "Default Light+",
+  "workbench.iconTheme": "vs-seti",
+
+  // Extension settings
+  "thunder-client.workspaceRelativePath": ".vscode/thunder-client",
+  "thunder-client.saveRequestOnSend": true,
+
+  // Code spell checker
+  "cSpell.words": [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "pymongo",
+    "mongodb",
+    "pytest",
+    "asyncio",
+    "httpx",
+    "mongomock",
+    "devcontainer",
+    "engr"
+  ],
+
+  // Better comments
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ]
+}

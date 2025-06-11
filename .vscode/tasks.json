@@ -1,0 +1,203 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start FastAPI Server",
+      "type": "shell",
+      "command": "./dev-server.sh",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Tests",
+      "type": "shell",
+      "command": "./dev-test.sh",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Tests with Watch",
+      "type": "shell",
+      "command": "./dev-test-watch.sh",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Format Code",
+      "type": "shell",
+      "command": "./dev-format.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint Code",
+      "type": "shell",
+      "command": "./dev-lint.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": [
+        "$flake8",
+        "$mypy"
+      ]
+    },
+    {
+      "label": "Full Code Check",
+      "type": "shell",
+      "command": "./dev.sh",
+      "args": ["check"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": [
+        "$flake8",
+        "$mypy"
+      ]
+    },
+    {
+      "label": "Reset Database",
+      "type": "shell",
+      "command": "./dev-reset-db.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Install Dependencies",
+      "type": "shell",
+      "command": "pip",
+      "args": ["install", "--user", "-r", "backend/requirements-dev.txt"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Docker Images",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": ["-f", ".devcontainer/docker-compose.dev.yml", "build"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "View Logs",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": ["-f", ".devcontainer/docker-compose.dev.yml", "logs", "-f"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": [],
+      "isBackground": true
+    }
+  ]
+}

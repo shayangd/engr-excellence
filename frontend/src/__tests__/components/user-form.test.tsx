@@ -13,10 +13,12 @@ jest.mock("@/components/ui/button", () => ({
 
 jest.mock("@/components/ui/input", () => {
   const React = require("react");
+  const Input = React.forwardRef((props: any, ref: any) => (
+    <input ref={ref} {...props} />
+  ));
+  Input.displayName = "Input";
   return {
-    Input: React.forwardRef((props: any, ref: any) => (
-      <input ref={ref} {...props} />
-    )),
+    Input,
   };
 });
 

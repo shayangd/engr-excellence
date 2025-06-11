@@ -1,0 +1,147 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "FastAPI: Debug Server",
+      "type": "python",
+      "request": "launch",
+      "program": "/usr/local/bin/uvicorn",
+      "args": [
+        "app.main:app",
+        "--host", "0.0.0.0",
+        "--port", "8000",
+        "--reload"
+      ],
+      "cwd": "/workspace/backend",
+      "env": {
+        "PYTHONPATH": "/workspace/backend",
+        "DEBUG": "True",
+        "MONGODB_URL": "mongodb://mongo:27017",
+        "DATABASE_NAME": "fastapi_db_dev"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "gevent": false
+    },
+    {
+      "name": "FastAPI: Debug with Debugpy",
+      "type": "python",
+      "request": "launch",
+      "module": "debugpy",
+      "args": [
+        "--listen", "0.0.0.0:5678",
+        "--wait-for-client",
+        "-m", "uvicorn",
+        "app.main:app",
+        "--host", "0.0.0.0",
+        "--port", "8000",
+        "--reload"
+      ],
+      "cwd": "/workspace/backend",
+      "env": {
+        "PYTHONPATH": "/workspace/backend",
+        "DEBUG": "True",
+        "MONGODB_URL": "mongodb://mongo:27017",
+        "DATABASE_NAME": "fastapi_db_dev"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "/workspace/backend",
+      "env": {
+        "PYTHONPATH": "/workspace/backend",
+        "DEBUG": "True",
+        "MONGODB_URL": "mongodb://mongo:27017",
+        "DATABASE_NAME": "fastapi_db_dev"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: Pytest Current File",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "${file}",
+        "-v",
+        "--tb=short"
+      ],
+      "cwd": "/workspace/backend",
+      "env": {
+        "PYTHONPATH": "/workspace/backend",
+        "DEBUG": "True",
+        "MONGODB_URL": "mongodb://mongo:27017",
+        "DATABASE_NAME": "fastapi_db_test"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: Pytest All Tests",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "tests/",
+        "-v",
+        "--tb=short",
+        "--cov=app",
+        "--cov-report=term"
+      ],
+      "cwd": "/workspace/backend",
+      "env": {
+        "PYTHONPATH": "/workspace/backend",
+        "DEBUG": "True",
+        "MONGODB_URL": "mongodb://mongo:27017",
+        "DATABASE_NAME": "fastapi_db_test"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: Pytest with Coverage",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "tests/",
+        "-v",
+        "--tb=short",
+        "--cov=app",
+        "--cov-report=html",
+        "--cov-report=term"
+      ],
+      "cwd": "/workspace/backend",
+      "env": {
+        "PYTHONPATH": "/workspace/backend",
+        "DEBUG": "True",
+        "MONGODB_URL": "mongodb://mongo:27017",
+        "DATABASE_NAME": "fastapi_db_test"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Attach to Remote Debugger",
+      "type": "python",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5678
+      },
+      "pathMappings": [
+        {
+          "localRoot": "/workspace/backend",
+          "remoteRoot": "/workspace/backend"
+        }
+      ],
+      "justMyCode": false
+    }
+  ]
+}

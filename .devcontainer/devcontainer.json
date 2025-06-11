@@ -1,0 +1,134 @@
+{
+  "name": "Engineering Excellence - FastAPI + MongoDB",
+  "dockerComposeFile": "docker-compose.dev.yml",
+  "service": "dev-api",
+  "workspaceFolder": "/workspace",
+  
+  // Features to install in the container
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true,
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  },
+
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Python extensions
+        "ms-python.python",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-python.mypy-type-checker",
+        
+        // FastAPI/API development
+        "ms-vscode.vscode-thunder-client",
+        "humao.rest-client",
+        
+        // Docker and containers
+        "ms-azuretools.vscode-docker",
+        
+        // Database
+        "mongodb.mongodb-vscode",
+        
+        // Git and version control
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        
+        // General development
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-vscode.makefile-tools",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vscode.test-adapter-converter",
+        "littlefoxteam.vscode-python-test-adapter",
+        
+        // Productivity
+        "ms-vscode.vscode-todo-highlight",
+        "aaron-bond.better-comments",
+        "ms-vsliveshare.vsliveshare"
+      ],
+      
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.linting.mypyEnabled": true,
+        "python.formatting.provider": "black",
+        "python.sortImports.args": ["--profile", "black"],
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": [
+          "backend/tests"
+        ],
+        "python.testing.unittestEnabled": false,
+        "python.testing.autoTestDiscoverOnSaveEnabled": true,
+        
+        // Editor settings
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        },
+        "editor.rulers": [88],
+        
+        // File associations
+        "files.associations": {
+          "*.env*": "dotenv",
+          "docker-compose*.yml": "dockercompose",
+          "Dockerfile*": "dockerfile"
+        },
+        
+        // Terminal
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        
+        // MongoDB
+        "mongodb.connectionSaveLocation": "Workspace"
+      }
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally
+  "forwardPorts": [8000, 27017, 8081],
+  "portsAttributes": {
+    "8000": {
+      "label": "FastAPI Application",
+      "onAutoForward": "notify"
+    },
+    "27017": {
+      "label": "MongoDB",
+      "onAutoForward": "silent"
+    },
+    "8081": {
+      "label": "Mongo Express",
+      "onAutoForward": "silent"
+    }
+  },
+
+  // Use 'postCreateCommand' to run commands after the container is created
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  // Configure container user
+  "remoteUser": "vscode",
+  
+  // Mount the local git config and ssh keys
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ],
+
+  // Environment variables
+  "containerEnv": {
+    "PYTHONPATH": "/workspace/backend",
+    "MONGODB_URL": "mongodb://mongo:27017",
+    "DATABASE_NAME": "fastapi_db_dev",
+    "DEBUG": "True"
+  }
+}

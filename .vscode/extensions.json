@@ -1,0 +1,63 @@
+{
+  "recommendations": [
+    // Python development
+    "ms-python.python",
+    "ms-python.flake8",
+    "ms-python.black-formatter",
+    "ms-python.isort",
+    "ms-python.mypy-type-checker",
+    
+    // FastAPI and API development
+    "ms-vscode.vscode-thunder-client",
+    "humao.rest-client",
+    
+    // Docker and containers
+    "ms-azuretools.vscode-docker",
+    
+    // Database
+    "mongodb.mongodb-vscode",
+    
+    // Git and version control
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    
+    // File formats and syntax
+    "ms-vscode.vscode-json",
+    "redhat.vscode-yaml",
+    "ms-vscode.makefile-tools",
+    
+    // Testing
+    "ms-vscode.test-adapter-converter",
+    "littlefoxteam.vscode-python-test-adapter",
+    
+    // Code quality and productivity
+    "streetsidesoftware.code-spell-checker",
+    "ms-vscode.vscode-todo-highlight",
+    "aaron-bond.better-comments",
+    
+    // Collaboration
+    "ms-vsliveshare.vsliveshare",
+    
+    // Environment files
+    "mikestead.dotenv",
+    
+    // Markdown
+    "yzhang.markdown-all-in-one",
+    
+    // Bracket pair colorizer
+    "coenraads.bracket-pair-colorizer-2",
+    
+    // Path intellisense
+    "christian-kohler.path-intellisense",
+    
+    // Auto rename tag
+    "formulahendry.auto-rename-tag",
+    
+    // Indent rainbow
+    "oderwat.indent-rainbow"
+  ],
+  "unwantedRecommendations": [
+    "ms-python.pylint",
+    "ms-python.autopep8"
+  ]
+}

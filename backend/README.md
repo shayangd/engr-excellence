@@ -172,6 +172,7 @@ The project includes comprehensive unit and integration tests.
 
 ```bash
 # Run all tests
+cd backend
 make test
 
 # Run unit tests only
@@ -187,6 +188,9 @@ make test-coverage
 #### Using Docker Compose directly
 
 ```bash
+# Run single test
+docker compose exec api python -m pytest tests/unit/api/test_users.py::TestUsersAPI::test_create_user_invalid_email -v --asyncio-mode=auto
+
 # Run all tests
 docker compose exec api python -m pytest tests/ -v --asyncio-mode=auto
 

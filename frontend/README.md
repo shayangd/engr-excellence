@@ -14,6 +14,7 @@ A modern Next.js frontend application for user management with full CRUD operati
 - ✅ **Loading States**: Better UX with loading indicators
 - ✅ **Pagination**: Built-in pagination for user listings
 - ✅ **Docker Support**: Complete containerization
+- ✅ **Comprehensive Testing**: 110+ unit tests with Jest and React Testing Library
 
 ## Tech Stack
 
@@ -25,23 +26,27 @@ A modern Next.js frontend application for user management with full CRUD operati
 - **TanStack Query** - Data fetching and caching
 - **Axios** - HTTP client
 - **Lucide React** - Icons
+- **Jest** - Testing framework
+- **React Testing Library** - Component testing utilities
 
 ## Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 - FastAPI backend running on port 8000
 
 ### Development
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -51,12 +56,14 @@ npm run dev
 ### Docker
 
 Build and run with Docker:
+
 ```bash
 docker build -t user-management-frontend .
 docker run -p 3000:3000 user-management-frontend
 ```
 
 Or use the complete docker-compose setup from the root directory:
+
 ```bash
 docker-compose up
 ```
@@ -66,26 +73,32 @@ docker-compose up
 ```
 frontend/
 ├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── globals.css        # Global styles
-│   │   ├── layout.tsx         # Root layout
-│   │   ├── page.tsx           # Home page
-│   │   └── providers.tsx      # React Query provider
-│   ├── components/            # React components
-│   │   ├── ui/               # Reusable UI components
-│   │   ├── user-form.tsx     # User form component
-│   │   └── user-list.tsx     # User list component
-│   ├── lib/                  # Utilities
-│   │   ├── api.ts           # API client
-│   │   ├── utils.ts         # Utility functions
-│   │   └── validations.ts   # Zod schemas
-│   └── types/               # TypeScript types
-│       └── user.ts          # User type definitions
-├── public/                  # Static assets
-├── Dockerfile              # Docker configuration
-├── next.config.js          # Next.js configuration
-├── tailwind.config.js      # Tailwind configuration
-└── package.json           # Dependencies
+│   ├── __tests__/             # Test files
+│   │   ├── components/       # Component tests
+│   │   ├── lib/             # Library function tests
+│   │   └── setup/           # Test configuration
+│   ├── app/                  # Next.js App Router
+│   │   ├── globals.css      # Global styles
+│   │   ├── layout.tsx       # Root layout
+│   │   ├── page.tsx         # Home page
+│   │   └── providers.tsx    # React Query provider
+│   ├── components/          # React components
+│   │   ├── ui/             # Reusable UI components
+│   │   ├── user-form.tsx   # User form component
+│   │   └── user-list.tsx   # User list component
+│   ├── lib/                # Utilities
+│   │   ├── api.ts         # API client
+│   │   ├── utils.ts       # Utility functions
+│   │   └── validations.ts # Zod schemas
+│   └── types/             # TypeScript types
+│       └── user.ts        # User type definitions
+├── public/                # Static assets
+├── jest.config.js         # Jest configuration
+├── TESTING.md            # Testing documentation
+├── Dockerfile            # Docker configuration
+├── next.config.js        # Next.js configuration
+├── tailwind.config.js    # Tailwind configuration
+└── package.json         # Dependencies
 ```
 
 ## API Integration
@@ -108,8 +121,18 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ## Available Scripts
 
+### Development
+
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 - `npm run type-check` - Run TypeScript type checking
+
+### Testing
+
+- `npm test` - Run all tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Run tests with coverage report
+
+For detailed testing instructions including Docker usage, see [TESTING.md](./TESTING.md).

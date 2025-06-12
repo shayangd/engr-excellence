@@ -20,7 +20,10 @@ COPY . .
 # Environment variables for build
 ENV NEXT_TELEMETRY_DISABLED=1 \
     PORT=8571
-# API URL will be set at runtime via docker-compose environment variables
+
+# Accept build-time argument for API URL
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 RUN npm run build
 

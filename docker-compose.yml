@@ -24,7 +24,7 @@ services:
     ports:
       - "8571:8571" #3000:3000
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_URL=http://localhost:8570
       - NODE_ENV=production
     depends_on:
       - backend

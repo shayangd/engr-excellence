@@ -1,8 +1,8 @@
 services:
-  # FastAPI Application
-  api:
-    build: .
-    container_name: fastapi_app
+  # FastAPI Backend
+  backend:
+    build: ./backend
+    container_name: engr-excellence-backend-fastapi
     ports:
       - "8000:8000"
     environment:
@@ -10,9 +10,24 @@ services:
       - DATABASE_NAME=fastapi_db
       - DEBUG=True
     volumes:
-      - .:/app
+      - ./backend:/app
     depends_on:
       - mongo
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Next.js Frontend
+  frontend:
+    build: ./frontend
+    container_name: engr-excellence-frontend-nextjs
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NODE_ENV=production
+    depends_on:
+      - backend
     networks:
       - app-network
     restart: unless-stopped
@@ -20,14 +35,14 @@ services:
   # MongoDB Database
   mongo:
     image: mongo:7.0
-    container_name: mongodb
+    container_name: engr-excellence-mongodb
     ports:
       - "27017:27017"
     environment:
       - MONGO_INITDB_DATABASE=fastapi_db
     volumes:
       - mongodb_data:/data/db
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./backend/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     networks:
       - app-network
     restart: unless-stopped
@@ -35,7 +50,7 @@ services:
   # MongoDB Express (Optional - for database management)
   mongo-express:
     image: mongo-express:1.0.0
-    container_name: mongo_express
+    container_name: engr-excellence-mongo-express
     ports:
       - "8081:8081"
     environment:

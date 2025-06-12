@@ -30,7 +30,7 @@ services:
       - .env
     environment:
       # Override specific variables for Docker environment
-      - NODE_ENV=production
+      - NODE_ENV=${NODE_ENV:-production}
       - PORT=8571
       - HOSTNAME=0.0.0.0
     depends_on:

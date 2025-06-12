@@ -17,8 +17,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Environment variables for build #8000 to 8570 backend port
-ENV NEXT_TELEMETRY_DISABLED=1
+# Environment variables for build
+ENV NEXT_TELEMETRY_DISABLED=1 \
+    PORT=8571
 # API URL will be set at runtime via docker-compose environment variables
 
 RUN npm run build
@@ -26,9 +27,6 @@ RUN npm run build
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
-
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -47,14 +45,13 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-#3000
-EXPOSE 8571
+# Expose port (dynamic based on PORT environment variable)
+EXPOSE $PORT
 
-ENV PORT=8571
-ENV HOSTNAME="0.0.0.0"
 
-# Health check
+
+# Health check (always uses localhost since it's checking from inside the container)
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8571/api/health || exit 1
+    CMD curl -f http://localhost:${PORT}/api/health || exit 1
 
 CMD ["node", "server.js"]

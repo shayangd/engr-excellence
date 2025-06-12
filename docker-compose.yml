@@ -4,7 +4,7 @@ services:
     build: ./backend
     container_name: engr-excellence-backend-fastapi
     ports:
-      - "8000:8000"
+      - "8570:8570" #8000:8000
     environment:
       - MONGODB_URL=mongodb://mongo:27017
       - DATABASE_NAME=fastapi_db
@@ -22,7 +22,7 @@ services:
     build: ./frontend
     container_name: engr-excellence-frontend-nextjs
     ports:
-      - "3000:3000"
+      - "8571:8571" #3000:3000
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:8000
       - NODE_ENV=production

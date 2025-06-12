@@ -201,18 +201,49 @@ npm run lint
 
 ## 🔒 Environment Variables
 
-### Backend (.env)
+The application uses a **comprehensive 6-file environment configuration system** for maximum flexibility. See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 
-```env
-MONGODB_URL=mongodb://localhost:27017
-DATABASE_NAME=fastapi_db
-DEBUG=True
+### Environment File Structure
+
+```
+├── .env                    # Root - Local development defaults
+├── .env.server            # Root - Server deployment template
+├── frontend/
+│   ├── .env               # Frontend - Local development
+│   └── .env.server        # Frontend - Server deployment
+└── backend/
+    ├── .env               # Backend - Local development
+    └── .env.server        # Backend - Server deployment
 ```
 
-### Frontend (.env.local)
+### Quick Setup
 
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8570
+**Local Development (Recommended):**
+
+```bash
+# Validate and deploy locally
+./scripts/deploy.sh local
+```
+
+**Server Deployment:**
+
+```bash
+# Deploy to server with default IP
+./scripts/deploy.sh server
+
+# Deploy to server with custom IP
+./scripts/deploy.sh server 192.168.1.100
+```
+
+**Manual Deployment:**
+
+```bash
+# Local development
+docker-compose up --build
+
+# Server deployment
+cp .env.server .env && cp frontend/.env.server frontend/.env && cp backend/.env.server backend/.env
+docker-compose up --build -d
 ```
 
 ## 📝 Usage Examples

@@ -19,7 +19,7 @@ COPY . .
 
 # Environment variables for build #8000 to 8570 backend port
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PUBLIC_API_URL=http://localhost:8570
+# API URL will be set at runtime via docker-compose environment variables
 
 RUN npm run build
 

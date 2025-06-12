@@ -42,14 +42,14 @@ sleep 10
 echo "🔍 Checking service health..."
 
 # Check backend
-if curl -f http://localhost:8000/health >/dev/null 2>&1; then
+if curl -f http://localhost:8570/health >/dev/null 2>&1; then
     echo "✅ Backend is healthy"
 else
     echo "❌ Backend is not responding"
 fi
 
 # Check frontend
-if curl -f http://localhost:3000/api/health >/dev/null 2>&1; then
+if curl -f http://localhost:8571/api/health >/dev/null 2>&1; then
     echo "✅ Frontend is healthy"
 else
     echo "❌ Frontend is not responding"
@@ -67,9 +67,9 @@ echo "🎉 Setup complete!"
 echo "=================="
 echo ""
 echo "📱 Access your applications:"
-echo "   Frontend:      http://localhost:3000"
-echo "   Backend API:   http://localhost:8000"
-echo "   API Docs:      http://localhost:8000/api/v1/docs"
+echo "   Frontend:      http://localhost:8571"
+echo "   Backend API:   http://localhost:8570"
+echo "   API Docs:      http://localhost:8570/api/v1/docs"
 echo "   MongoDB Admin: http://localhost:8081 (admin/admin123)"
 echo ""
 echo "🔧 Useful commands:"

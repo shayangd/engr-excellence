@@ -43,7 +43,7 @@ cat > /workspace/dev-server.sh << 'EOF'
 #!/bin/bash
 cd /workspace/backend
 echo "🚀 Starting FastAPI development server..."
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8570 --reload
 EOF
 chmod +x /workspace/dev-server.sh
 

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Development API container
@@ -27,8 +27,8 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
     ports:
-      - "8000:8000"  # FastAPI
-      - "5678:5678"  # Python debugger
+      - "8570:8570" # FastAPI
+      - "5678:5678" # Python debugger
     depends_on:
       - mongo
       - redis
@@ -90,8 +90,8 @@ services:
     image: mailhog/mailhog:v1.0.1
     container_name: engr_excellence_mailhog_dev
     ports:
-      - "1025:1025"  # SMTP
-      - "8025:8025"  # Web UI
+      - "1025:1025" # SMTP
+      - "8025:8025" # Web UI
     networks:
       - dev-network
     restart: unless-stopped

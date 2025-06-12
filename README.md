@@ -3,19 +3,21 @@
 ### Open Hands: (openhands-fastapi)
 
 Prompt 1
+
 > create basic fast api project following all best practice. The project contains 4 crud apis of user. User model contain name id and email only.
 
 ### Augment Code: (dev)
 
 Prompt 1:
+
 > create folder named backend inside which create basic fast api project following all best practice. The project contains 4 crud apis of user. User model contain name id and email only. Use Mongo Db as database. use docker to do complete setup. i will only need to run 1 command docker compose up to run the project
 
 Prompt 2:
+
 > write unit tests for fast api
 
+# ========================
 
-========================
-========================
 ========================
 
 A full-stack user management application with FastAPI backend and Next.js frontend, featuring complete CRUD operations and Docker containerization.
@@ -102,9 +104,9 @@ docker-compose up --build
 ```
 
 3. Access the applications:
-   - **Frontend**: http://localhost:3000
-   - **Backend API**: http://localhost:8000
-   - **API Documentation**: http://localhost:8000/api/v1/docs
+   - **Frontend**: http://localhost:8571
+   - **Backend API**: http://localhost:8570
+   - **API Documentation**: http://localhost:8570/api/v1/docs
    - **MongoDB Admin**: http://localhost:8081 (admin/admin123)
 
 ### Local Development
@@ -116,7 +118,7 @@ cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8570
 ```
 
 #### Frontend Setup
@@ -192,8 +194,8 @@ npm run lint
 
 | Service       | Port  | Description                  |
 | ------------- | ----- | ---------------------------- |
-| frontend      | 3000  | Next.js frontend application |
-| backend       | 8000  | FastAPI backend API          |
+| frontend      | 8571  | Next.js frontend application |
+| backend       | 8570  | FastAPI backend API          |
 | mongo         | 27017 | MongoDB database             |
 | mongo-express | 8081  | MongoDB administration UI    |
 
@@ -210,7 +212,7 @@ DEBUG=True
 ### Frontend (.env.local)
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_API_URL=http://localhost:8570
 ```
 
 ## 📝 Usage Examples
@@ -218,7 +220,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 ### Create a User
 
 ```bash
-curl -X POST "http://localhost:8000/api/v1/users" \
+curl -X POST "http://localhost:8570/api/v1/users" \
      -H "Content-Type: application/json" \
      -d '{"name": "John Doe", "email": "john@example.com"}'
 ```
@@ -226,13 +228,13 @@ curl -X POST "http://localhost:8000/api/v1/users" \
 ### Get Users
 
 ```bash
-curl "http://localhost:8000/api/v1/users?page=1&size=10"
+curl "http://localhost:8570/api/v1/users?page=1&size=10"
 ```
 
 ### Update a User
 
 ```bash
-curl -X PUT "http://localhost:8000/api/v1/users/{user_id}" \
+curl -X PUT "http://localhost:8570/api/v1/users/{user_id}" \
      -H "Content-Type: application/json" \
      -d '{"name": "Jane Doe", "email": "jane@example.com"}'
 ```
@@ -240,7 +242,7 @@ curl -X PUT "http://localhost:8000/api/v1/users/{user_id}" \
 ### Delete a User
 
 ```bash
-curl -X DELETE "http://localhost:8000/api/v1/users/{user_id}"
+curl -X DELETE "http://localhost:8570/api/v1/users/{user_id}"
 ```
 
 ## 🤝 Contributing

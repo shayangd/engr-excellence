@@ -35,9 +35,9 @@ A modern, fast, and scalable REST API built with FastAPI and MongoDB for user ma
 
 That's it! The application will be available at:
 
-- **API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/api/v1/docs
-- **Frontend**: http://localhost:3000
+- **API**: http://localhost:8570
+- **API Documentation**: http://localhost:8570/api/v1/docs
+- **Frontend**: http://localhost:8571
 - **MongoDB Express** (Database UI): http://localhost:8081 (admin/admin123)
 
 ## API Endpoints
@@ -74,7 +74,7 @@ That's it! The application will be available at:
 ### Create User
 
 ```bash
-curl -X POST "http://localhost:8000/api/v1/users/" \
+curl -X POST "http://localhost:8570/api/v1/users/" \
      -H "Content-Type: application/json" \
      -d '{
        "name": "John Doe",
@@ -85,19 +85,19 @@ curl -X POST "http://localhost:8000/api/v1/users/" \
 ### Get All Users
 
 ```bash
-curl "http://localhost:8000/api/v1/users/?page=1&size=10"
+curl "http://localhost:8570/api/v1/users/?page=1&size=10"
 ```
 
 ### Get User by ID
 
 ```bash
-curl "http://localhost:8000/api/v1/users/{user_id}"
+curl "http://localhost:8570/api/v1/users/{user_id}"
 ```
 
 ### Update User
 
 ```bash
-curl -X PUT "http://localhost:8000/api/v1/users/{user_id}" \
+curl -X PUT "http://localhost:8570/api/v1/users/{user_id}" \
      -H "Content-Type: application/json" \
      -d '{
        "name": "Jane Doe",
@@ -108,7 +108,7 @@ curl -X PUT "http://localhost:8000/api/v1/users/{user_id}" \
 ### Delete User
 
 ```bash
-curl -X DELETE "http://localhost:8000/api/v1/users/{user_id}"
+curl -X DELETE "http://localhost:8570/api/v1/users/{user_id}"
 ```
 
 ## Development

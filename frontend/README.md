@@ -116,7 +116,7 @@ The frontend connects to the FastAPI backend running on port 8000. The API endpo
 Create a `.env.local` file:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_API_URL=http://localhost:8570
 ```
 
 ## Available Scripts

@@ -3,7 +3,7 @@
   "dockerComposeFile": "docker-compose.dev.yml",
   "service": "dev-api",
   "workspaceFolder": "/workspace",
-  
+
   // Features to install in the container
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
@@ -29,21 +29,21 @@
         "ms-python.black-formatter",
         "ms-python.isort",
         "ms-python.mypy-type-checker",
-        
+
         // FastAPI/API development
         "ms-vscode.vscode-thunder-client",
         "humao.rest-client",
-        
+
         // Docker and containers
         "ms-azuretools.vscode-docker",
-        
+
         // Database
         "mongodb.mongodb-vscode",
-        
+
         // Git and version control
         "eamodio.gitlens",
         "github.vscode-pull-request-github",
-        
+
         // General development
         "ms-vscode.vscode-json",
         "redhat.vscode-yaml",
@@ -51,13 +51,13 @@
         "streetsidesoftware.code-spell-checker",
         "ms-vscode.test-adapter-converter",
         "littlefoxteam.vscode-python-test-adapter",
-        
+
         // Productivity
         "ms-vscode.vscode-todo-highlight",
         "aaron-bond.better-comments",
         "ms-vsliveshare.vsliveshare"
       ],
-      
+
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "python.linting.enabled": true,
@@ -66,29 +66,27 @@
         "python.formatting.provider": "black",
         "python.sortImports.args": ["--profile", "black"],
         "python.testing.pytestEnabled": true,
-        "python.testing.pytestArgs": [
-          "backend/tests"
-        ],
+        "python.testing.pytestArgs": ["backend/tests"],
         "python.testing.unittestEnabled": false,
         "python.testing.autoTestDiscoverOnSaveEnabled": true,
-        
+
         // Editor settings
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
           "source.organizeImports": true
         },
         "editor.rulers": [88],
-        
+
         // File associations
         "files.associations": {
           "*.env*": "dotenv",
           "docker-compose*.yml": "dockercompose",
           "Dockerfile*": "dockerfile"
         },
-        
+
         // Terminal
         "terminal.integrated.defaultProfile.linux": "zsh",
-        
+
         // MongoDB
         "mongodb.connectionSaveLocation": "Workspace"
       }
@@ -96,9 +94,9 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally
-  "forwardPorts": [8000, 27017, 8081],
+  "forwardPorts": [8570, 27017, 8081],
   "portsAttributes": {
-    "8000": {
+    "8570": {
       "label": "FastAPI Application",
       "onAutoForward": "notify"
     },
@@ -117,7 +115,7 @@
 
   // Configure container user
   "remoteUser": "vscode",
-  
+
   // Mount the local git config and ssh keys
   "mounts": [
     "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",

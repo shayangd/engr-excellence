@@ -41,7 +41,7 @@ dev-frontend:
 	cd frontend && npm run dev
 
 dev-backend:
-	cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+	cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8570
 
 test:
 	cd backend && pytest
@@ -49,9 +49,9 @@ test:
 # Combined commands
 install: install-frontend install-backend
 
-dev: 
+dev:
 	@echo "Starting development servers..."
-	@echo "Backend will be available at http://localhost:8000"
-	@echo "Frontend will be available at http://localhost:3000"
+	@echo "Backend will be available at http://localhost:8570"
+	@echo "Frontend will be available at http://localhost:8571"
 	@echo "Press Ctrl+C to stop"
 	@make -j2 dev-frontend dev-backend

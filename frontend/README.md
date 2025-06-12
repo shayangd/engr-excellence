@@ -103,7 +103,7 @@ frontend/
 
 ## API Integration
 
-The frontend connects to the FastAPI backend running on port 8000. The API endpoints used:
+The frontend connects to the FastAPI backend running on port 8570. The API endpoints used:
 
 - `GET /api/v1/users` - List users with pagination
 - `POST /api/v1/users` - Create new user

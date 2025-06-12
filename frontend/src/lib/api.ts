@@ -1,19 +1,27 @@
-import axios from 'axios';
-import { User, UserCreate, UserUpdate, UserListResponse, PaginationParams } from '@/types/user';
+import {
+  PaginationParams,
+  User,
+  UserCreate,
+  UserListResponse,
+  UserUpdate,
+} from "@/types/user";
+import axios from "axios";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8570";
 
 const api = axios.create({
   baseURL: `${API_BASE_URL}/api/v1`,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 // Request interceptor for logging
 api.interceptors.request.use(
   (config) => {
-    console.log(`Making ${config.method?.toUpperCase()} request to ${config.url}`);
+    console.log(
+      `Making ${config.method?.toUpperCase()} request to ${config.url}`
+    );
     return config;
   },
   (error) => {
@@ -25,7 +33,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error('API Error:', error.response?.data || error.message);
+    console.error("API Error:", error.response?.data || error.message);
     return Promise.reject(error);
   }
 );
@@ -33,7 +41,7 @@ api.interceptors.response.use(
 export const userApi = {
   // Get all users with pagination
   getUsers: async (params: PaginationParams): Promise<UserListResponse> => {
-    const response = await api.get('/users', { params });
+    const response = await api.get("/users", { params });
     return response.data;
   },
 
@@ -45,7 +53,7 @@ export const userApi = {
 
   // Create new user
   createUser: async (userData: UserCreate): Promise<User> => {
-    const response = await api.post('/users', userData);
+    const response = await api.post("/users", userData);
     return response.data;
   },
 

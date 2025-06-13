@@ -287,3 +287,7 @@ curl -X DELETE "http://localhost:8570/api/v1/users/{user_id}"
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+## Deployment
+
+v1- 13/Jun/25 (6 env shared on email)
